@@ -1,15 +1,15 @@
+import { PrismaClientKnownRequestError } from "@prisma/client/runtime/client";
 import { describe, expect, it } from "vitest";
 import NormalizedPrismaError from "../src/errors/normalized-error";
-import { PrismaClientKnownRequestError } from "@prisma/client/runtime/client";
 import PrismaErrorCategories from "../src/types/error-categories";
-import ResolutionStrategy from "../src/types/resolution-strategy";
 import Exposure from "../src/types/exposure";
+import ResolutionStrategy from "../src/types/resolution-strategy";
 
 describe("NormalizedPrismaError", () => {
   it("constructs with all properties", () => {
     const originalError = new PrismaClientKnownRequestError(
       "Unique constraint failed on field: email",
-      { code: "P2002", clientVersion: "4.0.0" }
+      { code: "P2002", clientVersion: "4.0.0" },
     );
 
     const normalized = new NormalizedPrismaError({
@@ -27,10 +27,10 @@ describe("NormalizedPrismaError", () => {
 
     expect(normalized.code).toBe("UNIQUE_CONSTRAINT_VIOLATION");
     expect(normalized.prismaCode).toBe("P2002");
-    expect(normalized.category).toBe(PrismaErrorCategories.CONSTRAINT_VIOLATION);
-    expect(normalized.message).toBe(
-      "A record with this email already exists"
+    expect(normalized.category).toBe(
+      PrismaErrorCategories.CONSTRAINT_VIOLATION,
     );
+    expect(normalized.message).toBe("A record with this email already exists");
     expect(normalized.userMsg).toBe("This email is already registered");
     expect(normalized.meta).toEqual({ field: "email" });
     expect(normalized.cause).toBe("Duplicate value in unique field");
@@ -40,10 +40,10 @@ describe("NormalizedPrismaError", () => {
   });
 
   it("extends Error class", () => {
-    const originalError = new PrismaClientKnownRequestError(
-      "Test",
-      { code: "P2025", clientVersion: "4.0.0" }
-    );
+    const originalError = new PrismaClientKnownRequestError("Test", {
+      code: "P2025",
+      clientVersion: "4.0.0",
+    });
 
     const normalized = new NormalizedPrismaError({
       code: "RECORD_NOT_FOUND",
@@ -62,10 +62,10 @@ describe("NormalizedPrismaError", () => {
   });
 
   it("handles empty metadata", () => {
-    const originalError = new PrismaClientKnownRequestError(
-      "Test",
-      { code: "P2000", clientVersion: "4.0.0" }
-    );
+    const originalError = new PrismaClientKnownRequestError("Test", {
+      code: "P2000",
+      clientVersion: "4.0.0",
+    });
 
     const normalized = new NormalizedPrismaError({
       code: "VALUE_TOO_LONG",
@@ -86,7 +86,7 @@ describe("NormalizedPrismaError", () => {
   it("preserves complex metadata", () => {
     const originalError = new PrismaClientKnownRequestError(
       "Foreign key constraint failed",
-      { code: "P2003", clientVersion: "4.0.0" }
+      { code: "P2003", clientVersion: "4.0.0" },
     );
 
     const metadata = {
@@ -116,10 +116,10 @@ describe("NormalizedPrismaError", () => {
   });
 
   it("handles different exposure levels", () => {
-    const originalError = new PrismaClientKnownRequestError(
-      "Test",
-      { code: "P2025", clientVersion: "4.0.0" }
-    );
+    const originalError = new PrismaClientKnownRequestError("Test", {
+      code: "P2025",
+      clientVersion: "4.0.0",
+    });
 
     const exposures = [Exposure.SAFE, Exposure.SANITIZED, Exposure.INTERNAL];
 
@@ -142,10 +142,10 @@ describe("NormalizedPrismaError", () => {
   });
 
   it("handles different resolution strategies", () => {
-    const originalError = new PrismaClientKnownRequestError(
-      "Test",
-      { code: "P2034", clientVersion: "4.0.0" }
-    );
+    const originalError = new PrismaClientKnownRequestError("Test", {
+      code: "P2034",
+      clientVersion: "4.0.0",
+    });
 
     const strategies = [
       ResolutionStrategy.RETRY,
@@ -176,10 +176,10 @@ describe("NormalizedPrismaError", () => {
   });
 
   it("handles all error categories", () => {
-    const originalError = new PrismaClientKnownRequestError(
-      "Test",
-      { code: "P2000", clientVersion: "4.0.0" }
-    );
+    const originalError = new PrismaClientKnownRequestError("Test", {
+      code: "P2000",
+      clientVersion: "4.0.0",
+    });
 
     const categories = [
       PrismaErrorCategories.VALIDATION,

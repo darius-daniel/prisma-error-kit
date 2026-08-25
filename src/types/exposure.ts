@@ -4,6 +4,6 @@ const Exposure = {
   INTERNAL: "INTERNAL",
 } as const;
 
-export type ExposureType = typeof Exposure[keyof typeof Exposure];
+export type ExposureType = (typeof Exposure)[keyof typeof Exposure];
 
 export default Exposure;

@@ -8,6 +8,7 @@ const ResolutionStrategy = {
   INVESTIGATE: "INVESTIGATE",
 } as const;
 
-export type ResolutionStrategyType = typeof ResolutionStrategy[keyof typeof ResolutionStrategy];
+export type ResolutionStrategyType =
+  (typeof ResolutionStrategy)[keyof typeof ResolutionStrategy];
 
 export default ResolutionStrategy;

@@ -6,8 +6,8 @@ import type {
   PrismaClientValidationError,
 } from "@prisma/client/runtime/client";
 import type {
-  PrismaErrorCategoriesType,
   ExposureType,
+  PrismaErrorCategoriesType,
   ResolutionStrategyType,
 } from "../types";
 
@@ -17,7 +17,7 @@ interface NormalizedPrismaErrorConfig {
   category: PrismaErrorCategoriesType;
   message: string;
   userMsg: string;
-  meta: {};
+  meta: Record<string, unknown>;
   cause: string;
   originalError:
     | PrismaClientKnownRequestError
