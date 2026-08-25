@@ -15,13 +15,13 @@
     "esModuleInterop": true,
     "isolatedModules": true,
     "verbatimModuleSyntax": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "paths": {
+      "@errors/*": ["./src/errors/*"],
+      "@prisma/*": ["./src/prisma/*"],
+      "@types/*": ["./src/types/*"],
+      "@registry/*": ["./src/registry/*"]
+    }
   },
-  "include": ["src"],
-  "paths": {
-    "@errors/*": ["src/errors/*"],
-    "@prisma/*": ["src/prisma/*"],
-    "@types/*": ["src/types/*"],
-    "@registry/*": ["src/registry/*"]
-  }
+  "include": ["src"]
 }
