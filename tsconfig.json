@@ -17,5 +17,10 @@
     "verbatimModuleSyntax": true,
     "skipLibCheck": true
   },
-  "include": ["src"]
+  "include": ["src"],
+  "paths": {
+    "@errors/*": ["src/errors/*"],
+    "@prisma/*": ["src/prisma/*"],
+    "@types/*": ["src/types/*"]
+  }
 }
