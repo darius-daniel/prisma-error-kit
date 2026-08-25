@@ -6,15 +6,33 @@ import type {
   PrismaClientValidationError,
 } from "@prisma/client/runtime/client";
 import type {
-  Exposure,
-  PrismaErrorCategories,
-  ResolutionStrategy,
+  PrismaErrorCategoriesType,
+  ExposureType,
+  ResolutionStrategyType,
 } from "../types";
+
+interface NormalizedPrismaErrorConfig {
+  code: string;
+  prismaCode: string;
+  category: PrismaErrorCategoriesType;
+  message: string;
+  userMsg: string;
+  meta: {};
+  cause: string;
+  originalError:
+    | PrismaClientKnownRequestError
+    | PrismaClientInitializationError
+    | PrismaClientRustPanicError
+    | PrismaClientValidationError
+    | PrismaClientUnknownRequestError;
+  resolutionStrategy: ResolutionStrategyType;
+  exposure: ExposureType;
+}
 
 class NormalizedPrismaError extends Error {
   code: string;
   prismaCode: string;
-  category: typeof PrismaErrorCategories;
+  category: PrismaErrorCategoriesType;
   message: string;
   userMsg: string;
   meta: Record<string, unknown>;
@@ -25,37 +43,21 @@ class NormalizedPrismaError extends Error {
     | PrismaClientRustPanicError
     | PrismaClientValidationError
     | PrismaClientUnknownRequestError;
-  resolutionStrategy: typeof ResolutionStrategy;
-  exposure: typeof Exposure;
+  resolutionStrategy: ResolutionStrategyType;
+  exposure: ExposureType;
 
-  constructor(
-    code: string,
-    prismaCode: string,
-    category: typeof PrismaErrorCategories,
-    message: string,
-    userMsg: string,
-    meta: {},
-    cause: string,
-    originalError:
-      | PrismaClientKnownRequestError
-      | PrismaClientInitializationError
-      | PrismaClientRustPanicError
-      | PrismaClientValidationError
-      | PrismaClientUnknownRequestError,
-    resolutionStrategy: typeof ResolutionStrategy,
-    exposure: typeof Exposure,
-  ) {
+  constructor(error: NormalizedPrismaErrorConfig) {
     super();
-    this.code = code;
-    this.prismaCode = prismaCode;
-    this.category = category;
-    this.message = message;
-    this.userMsg = userMsg;
-    this.meta = meta;
-    this.cause = cause;
-    this.originalError = originalError;
-    this.resolutionStrategy = resolutionStrategy;
-    this.exposure = exposure;
+    this.code = error.code;
+    this.prismaCode = error.prismaCode;
+    this.category = error.category;
+    this.message = error.message;
+    this.userMsg = error.userMsg;
+    this.meta = error.meta;
+    this.cause = error.cause;
+    this.originalError = error.originalError;
+    this.resolutionStrategy = error.resolutionStrategy;
+    this.exposure = error.exposure;
   }
 }
 

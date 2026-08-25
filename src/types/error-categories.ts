@@ -12,4 +12,6 @@ const PrismaErrorCategories = {
   CONFIG: "CONFIGURATION",
 } as const;
 
+export type PrismaErrorCategoriesType = typeof PrismaErrorCategories[keyof typeof PrismaErrorCategories];
+
 export default PrismaErrorCategories;
