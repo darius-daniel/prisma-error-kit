@@ -35,7 +35,10 @@
   },
   "author": "Darius Daniel <dariusdaniel771@gmail.com>",
   "funding": "https://github.com/darius-daniel/prisma-error-kit?sponsor=1",
-  "repository": "github:darius-daniel/prisma-error-kit",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darius-daniel/prisma-error-kit.git"
+  },
   "bugs": {
     "url": "https://github.com/darius-daniel/prisma-error-kit/issues"
   },
