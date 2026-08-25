@@ -21,6 +21,7 @@
   "paths": {
     "@errors/*": ["src/errors/*"],
     "@prisma/*": ["src/prisma/*"],
-    "@types/*": ["src/types/*"]
+    "@types/*": ["src/types/*"],
+    "@registry/*": ["src/registry/*"]
   }
 }
