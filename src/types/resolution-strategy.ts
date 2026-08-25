@@ -1,0 +1,11 @@
+const ResolutionStrategy = {
+  RETRY: "RETRY",
+  REJECT_INPUT: "REJECT_INPUT",
+  RETURN_NOT_FOUND: "RETURN_NOT_FOUND",
+  RESOLVE_CONFLICT: "RESOLVE_CONFLICT",
+  FIX_SCHEMA: "FIX_SCHEMA",
+  FIX_CONFIG: "FIX_CONFIG",
+  INVESTIGATE: "INVESTIGATE",
+} as const;
+
+export default ResolutionStrategy;
