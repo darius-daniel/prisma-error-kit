@@ -7,11 +7,4 @@ export default defineConfig([
     dts: true,
     sourcemap: true,
   },
-  {
-    entry: ["./src/browser.ts"],
-    platform: "browser",
-    dts: true,
-    minify: true,
-    sourcemap: true,
-  },
 ]);
