@@ -46,5 +46,6 @@ jobs:
         uses: codecov/codecov-action@v7
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+          slug: darius-daniel/prisma-error-kit
           fail_ci_if_error: true
           verbose: true
