@@ -48,7 +48,7 @@
   },
   "size-limit": [
     {
-      "path": "dist/browser.js",
+      "path": "dist/*.js|*.cjs|*.ts",
       "limit": "10 KB"
     }
   ],
