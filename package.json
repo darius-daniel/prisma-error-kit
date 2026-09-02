@@ -1,6 +1,6 @@
 {
   "name": "prisma-error-kit",
-  "version": "0.0.0",
+  "version": "1.1.0",
   "description": "A TypeScript library for handling Prisma errors in a structured and consistent way.",
   "keywords": [
     "prisma",
