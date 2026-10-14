@@ -16,7 +16,7 @@ interface NormalizedPrismaErrorConfig {
   prismaCode: string;
   category: PrismaErrorCategoriesType;
   message: string;
-  userMsg: string;
+  userMessage: string;
   meta: Record<string, unknown>;
   cause: string;
   originalError:
@@ -34,7 +34,7 @@ class NormalizedPrismaError extends Error {
   prismaCode: string;
   category: PrismaErrorCategoriesType;
   message: string;
-  userMsg: string;
+  userMessage: string;
   meta: Record<string, unknown>;
   cause: string;
   originalError:
@@ -52,7 +52,7 @@ class NormalizedPrismaError extends Error {
     this.prismaCode = error.prismaCode;
     this.category = error.category;
     this.message = error.message;
-    this.userMsg = error.userMsg;
+    this.userMessage = error.userMessage;
     this.meta = error.meta;
     this.cause = error.cause;
     this.originalError = error.originalError;
