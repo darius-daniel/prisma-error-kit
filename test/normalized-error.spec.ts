@@ -27,9 +27,7 @@ describe("NormalizedPrismaError", () => {
 
     expect(normalized.code).toBe("UNIQUE_CONSTRAINT_VIOLATION");
     expect(normalized.prismaCode).toBe("P2002");
-    expect(normalized.category).toBe(
-      PrismaErrorCategories.CONSTRAINT,
-    );
+    expect(normalized.category).toBe(PrismaErrorCategories.CONSTRAINT);
     expect(normalized.message).toBe("A record with this email already exists");
     expect(normalized.userMessage).toBe("This email is already registered");
     expect(normalized.meta).toEqual({ field: "email" });
