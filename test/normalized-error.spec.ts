@@ -15,9 +15,9 @@ describe("NormalizedPrismaError", () => {
     const normalized = new NormalizedPrismaError({
       code: "UNIQUE_CONSTRAINT_VIOLATION",
       prismaCode: "P2002",
-      category: PrismaErrorCategories.CONSTRAINT_VIOLATION,
+      category: PrismaErrorCategories.CONSTRAINT,
       message: "A record with this email already exists",
-      userMsg: "This email is already registered",
+      userMessage: "This email is already registered",
       meta: { field: "email" },
       cause: "Duplicate value in unique field",
       originalError,
@@ -28,10 +28,10 @@ describe("NormalizedPrismaError", () => {
     expect(normalized.code).toBe("UNIQUE_CONSTRAINT_VIOLATION");
     expect(normalized.prismaCode).toBe("P2002");
     expect(normalized.category).toBe(
-      PrismaErrorCategories.CONSTRAINT_VIOLATION,
+      PrismaErrorCategories.CONSTRAINT,
     );
     expect(normalized.message).toBe("A record with this email already exists");
-    expect(normalized.userMsg).toBe("This email is already registered");
+    expect(normalized.userMessage).toBe("This email is already registered");
     expect(normalized.meta).toEqual({ field: "email" });
     expect(normalized.cause).toBe("Duplicate value in unique field");
     expect(normalized.originalError).toBe(originalError);
@@ -50,7 +50,7 @@ describe("NormalizedPrismaError", () => {
       prismaCode: "P2025",
       category: PrismaErrorCategories.NOT_FOUND,
       message: "Record not found",
-      userMsg: "Resource not found",
+      userMessage: "Resource not found",
       meta: {},
       cause: "No matching record",
       originalError,
@@ -72,7 +72,7 @@ describe("NormalizedPrismaError", () => {
       prismaCode: "P2000",
       category: PrismaErrorCategories.VALIDATION,
       message: "Value too long",
-      userMsg: "Input is too long",
+      userMessage: "Input is too long",
       meta: {},
       cause: "Column length exceeded",
       originalError,
@@ -102,9 +102,9 @@ describe("NormalizedPrismaError", () => {
     const normalized = new NormalizedPrismaError({
       code: "FOREIGN_KEY_CONSTRAINT_VIOLATION",
       prismaCode: "P2003",
-      category: PrismaErrorCategories.CONSTRAINT_VIOLATION,
+      category: PrismaErrorCategories.CONSTRAINT,
       message: "Foreign key constraint failed",
-      userMsg: "Operation failed due to related records",
+      userMessage: "Operation failed due to related records",
       meta: metadata,
       cause: "Invalid reference",
       originalError,
@@ -129,7 +129,7 @@ describe("NormalizedPrismaError", () => {
         prismaCode: "P2025",
         category: PrismaErrorCategories.NOT_FOUND,
         message: "Test",
-        userMsg: "Test",
+        userMessage: "Test",
         meta: {},
         cause: "Test",
         originalError,
@@ -163,7 +163,7 @@ describe("NormalizedPrismaError", () => {
         prismaCode: "P2034",
         category: PrismaErrorCategories.TRANSACTION,
         message: "Test",
-        userMsg: "Test",
+        userMessage: "Test",
         meta: {},
         cause: "Test",
         originalError,
@@ -184,7 +184,7 @@ describe("NormalizedPrismaError", () => {
     const categories = [
       PrismaErrorCategories.VALIDATION,
       PrismaErrorCategories.INTEGRITY,
-      PrismaErrorCategories.CONSTRAINT_VIOLATION,
+      PrismaErrorCategories.CONSTRAINT,
       PrismaErrorCategories.NOT_FOUND,
       PrismaErrorCategories.CONNECTION,
       PrismaErrorCategories.TRANSACTION,
@@ -201,7 +201,7 @@ describe("NormalizedPrismaError", () => {
         prismaCode: "P2000",
         category,
         message: "Test",
-        userMsg: "Test",
+        userMessage: "Test",
         meta: {},
         cause: "Test",
         originalError,
